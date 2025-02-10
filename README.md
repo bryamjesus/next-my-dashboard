@@ -34,3 +34,28 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Hooks
+
+### `usePathname()`
+
+La función `usePathname()` de Next.js permite obtener la ruta actual de la aplicación.
+
+#### Uso
+
+```tsx
+import { usePathname } from 'next/navigation';
+
+const Component = () => {
+  const pathname = usePathname();
+
+  console.log({ pathname }); // { pathname: '/dashboard/main' }
+
+  return <p>Ruta actual: {pathname}</p>;
+};
+
+export default Component;
+```
+
+> **Nota:** `usePathname()` solo funciona en componentes de cliente (`"use client"`).  
+> No debe usarse en servidores o middleware.
