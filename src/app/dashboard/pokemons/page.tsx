@@ -1,6 +1,6 @@
+import { PokemonGrid } from '@/app/pokemons/interfaces/components/PokemonGrid';
 import { PokemonsResponse } from '@/app/pokemons/interfaces/pokemons-response';
 import { SimplePokemon } from '@/app/pokemons/interfaces/simple-pokemon';
-import Image from 'next/image';
 
 const getPokemons = async (
   limit = 20,
@@ -18,23 +18,15 @@ const getPokemons = async (
   return pokemons;
 };
 
-// Async functional component -> Next lo manejara como si fuera sync para el cliente
+// TODO: Async functional component -> Next lo manejara como si fuera sync para el cliente
 export default async function PokemonsPage() {
   const pokemons = await getPokemons(151);
   return (
     <div className="flex flex-col">
-      <div className="flex flex-wrap gap-10 items-center justify-center">
-        {/* TODO: Return implicito */}
-        {pokemons.map((pokemon) => (
-          <Image
-            key={pokemon.id}
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`}
-            width={100}
-            height={100}
-            alt={pokemon.name}
-          />
-        ))}
-      </div>
+      <span className="text-5xl my-2">
+        Listado de Pokemons <small>estático</small>
+      </span>
+      <PokemonGrid pokemons={pokemons} />
     </div>
   );
 }
