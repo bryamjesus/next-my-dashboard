@@ -19,6 +19,7 @@ export const PokemonCard = ({ pokemon }: Props) => {
             width={100}
             height={100}
             alt={name}
+            priority={false} // TODO:  Van a ser cargado bajo demanda
           />
           <p className="pt-2 text-lg font-semibold text-gray-50 capitalize">
             {name}

@@ -15,6 +15,10 @@ const getPokemons = async (
     name: pokemon.name,
   }));
 
+  // TODO: Error de prueba para llamar
+  // error.js
+  throw new Error('Este es un error de lo que no deberia suceder');
+
   return pokemons;
 };
 
