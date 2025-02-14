@@ -1,4 +1,5 @@
-import { PokemonGrid } from '@/pokemons/interfaces/components/PokemonGrid';
+
+import { PokemonGrid } from '@/pokemons/components/PokemonGrid';
 import { PokemonsResponse } from '@/pokemons/interfaces/pokemons-response';
 import { SimplePokemon } from '@/pokemons/interfaces/simple-pokemon';
 
