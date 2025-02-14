@@ -1,6 +1,6 @@
-import { PokemonGrid } from '@/app/pokemons/interfaces/components/PokemonGrid';
-import { PokemonsResponse } from '@/app/pokemons/interfaces/pokemons-response';
-import { SimplePokemon } from '@/app/pokemons/interfaces/simple-pokemon';
+import { PokemonGrid } from '@/pokemons/interfaces/components/PokemonGrid';
+import { PokemonsResponse } from '@/pokemons/interfaces/pokemons-response';
+import { SimplePokemon } from '@/pokemons/interfaces/simple-pokemon';
 
 const getPokemons = async (
   limit = 20,
@@ -17,7 +17,7 @@ const getPokemons = async (
 
   // TODO: Error de prueba para llamar
   // error.js
-  throw new Error('Este es un error de lo que no deberia suceder');
+  // throw new Error('Este es un error de lo que no deberia suceder');
 
   return pokemons;
 };
