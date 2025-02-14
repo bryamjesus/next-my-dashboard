@@ -11,7 +11,7 @@ const getPokemons = async (
   ).then((response) => response.json());
 
   const pokemons = data.results.map((pokemon) => ({
-    id: pokemon.url.split('/').at(-2)!,
+    idPokemon: pokemon.url.split('/').at(-2)!,
     name: pokemon.name,
   }));
 
