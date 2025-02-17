@@ -27,6 +27,8 @@ const getPokemon = async (idPokemon: string): Promise<Pokemon> => {
 };
 
 // TODO: Metadata dinámica
+// TODO: se actualizo los parametros de la funcion
+// para que sean de tipo Readonly
 export async function generateMetadata(
   props: Readonly<{
     params: Promise<{ idPokemon: string }>;
