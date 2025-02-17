@@ -29,6 +29,7 @@ const getPokemon = async (idPokemon: string): Promise<Pokemon> => {
 // TODO: Metadata dinámica
 // TODO: se actualizo los parametros de la funcion
 // para que sean de tipo Readonly
+// LINK SOLUCION: https://github.com/vercel/next.js/issues/74406
 export async function generateMetadata(
   props: Readonly<{
     params: Promise<{ idPokemon: string }>;
