@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { IoHeartOutline } from 'react-icons/io5';
-import { SimplePokemon } from '../simple-pokemon';
+import { SimplePokemon } from '../interfaces/simple-pokemon';
 
 interface Props {
   pokemon: SimplePokemon;

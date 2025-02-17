@@ -5,14 +5,14 @@ import { useEffect } from 'react';
 // TODO: Error Component
 export default function Error({
   error,
-  reset,
+  // reset,
 }: {
   error: Error & { digest?: string };
-  reset: () => void;
+  // reset: () => void;
 }) {
   useEffect(() => {
     // Log the error to an error reporting service
-    console.error(error);
+    console.log(error);
   }, [error]);
 
   return (

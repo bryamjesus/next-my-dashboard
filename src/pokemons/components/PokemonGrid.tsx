@@ -1,4 +1,4 @@
-import { SimplePokemon } from '../simple-pokemon';
+import { SimplePokemon } from '../interfaces/simple-pokemon';
 import { PokemonCard } from './PokemonCard';
 
 interface Props {
@@ -10,7 +10,6 @@ export const PokemonGrid = ({ pokemons }: Props) => {
       {/* TODO: Return implicito */}
       {pokemons.map((pokemon) => (
         <PokemonCard key={pokemon.idPokemon} pokemon={pokemon} />
-        
       ))}
     </div>
   );

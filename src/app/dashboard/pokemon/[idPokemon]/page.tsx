@@ -1,11 +1,17 @@
 import { Pokemon } from '@/pokemons/interfaces/pokemon';
+// import { Metadata, ResolvingMetadata } from 'next';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
-interface Props {
-  params: { idPokemon: string };
-}
+// interface Props {
+//   params: { idPokemon: string };
+// }
+
+type Props = {
+  params: Promise<{ idPokemon: string }>;
+  // searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
 
 const getPokemon = async (idPokemon: string): Promise<Pokemon> => {
   try {
@@ -21,6 +27,7 @@ const getPokemon = async (idPokemon: string): Promise<Pokemon> => {
     console.log(`Se cargó: ${pokemon.name}`);
     return pokemon;
   } catch (error) {
+    console.log(error);
     // TODO: aca se esta llamando al notFound de next
     notFound();
   }
@@ -29,14 +36,16 @@ const getPokemon = async (idPokemon: string): Promise<Pokemon> => {
 // TODO: Metadata dinámica
 // TODO: se actualizo los parametros de la funcion
 // para que sean de tipo Readonly
-// LINK SOLUCION: https://github.com/vercel/next.js/issues/74406
-export async function generateMetadata(
-  props: Readonly<{
-    params: Promise<Props['params']>;
-    // params: Promise<{ idPokemon: string }>;
-  }>
-): Promise<Metadata> {
-  const { idPokemon } = await props.params;
+// ✖️ LINK SOLUCION: https://github.com/vercel/next.js/issues/74406
+// ✖️ LINK SOLUCION 2: https://nextjs.org/docs/app/building-your-application/upgrading/version-15#async-request-apis-breaking-change
+// ✅ LINK SOLUCION 3: https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
+export async function generateMetadata({
+  params,
+}: Props): // { params, searchParams }: Props,
+// parent: ResolvingMetadata
+Promise<Metadata> {
+  const { idPokemon } = await params; // Promise
+  // const { idPokemon } = props.params;
   if (!idPokemon) {
     return {
       title: 'Error',
@@ -50,6 +59,7 @@ export async function generateMetadata(
       description: `Información del Pokémon ${name}`,
     };
   } catch (error) {
+    console.log(error);
     return {
       title: 'Error',
       description: 'No se pudo cargar la información del Pokémon',
