@@ -33,6 +33,7 @@ const getPokemon = async (idPokemon: string): Promise<Pokemon> => {
 export async function generateMetadata(
   props: Readonly<{
     params: Promise<Props['params']>;
+    // params: Promise<{ idPokemon: string }>;
   }>
 ): Promise<Metadata> {
   const { idPokemon } = await props.params;
