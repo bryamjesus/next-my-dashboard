@@ -1,32 +1,56 @@
 import { Pokemon } from '@/pokemons/interfaces/pokemon';
 import { Metadata } from 'next';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 
 interface Props {
   params: { idPokemon: string };
 }
 
 const getPokemon = async (idPokemon: string): Promise<Pokemon> => {
-  const pokemon = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${idPokemon}`,
-    {
-      cache: 'force-cache', // TODO: Cannot find name 'await'.
-      // next:{
-      //   revalidate: 60 * 60 * 30 * 6 // TODO: 6 meses
-      // }
-    }
-  ).then((response) => response.json());
-  console.log(`Se cargó: ${pokemon.name}`);
-  return pokemon;
+  try {
+    const pokemon = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${idPokemon}`,
+      {
+        cache: 'force-cache', // TODO: Cannot find name 'await'.
+        // next:{
+        //   revalidate: 60 * 60 * 30 * 6 // TODO: 6 meses
+        // }
+      }
+    ).then((response) => response.json());
+    console.log(`Se cargó: ${pokemon.name}`);
+    return pokemon;
+  } catch (error) {
+    // TODO: aca se esta llamando al notFound de next
+    notFound();
+  }
 };
 
 // TODO: Metadata dinámica
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { id, name } = await getPokemon(params.idPokemon);
-  return {
-    title: `#${id} - ${name}`,
-    description: `Información del pokemon ${name}`,
-  };
+export async function generateMetadata(
+  props: Readonly<{
+    params: Promise<{ idPokemon: string }>;
+  }>
+): Promise<Metadata> {
+  const { idPokemon } = await props.params;
+  if (!idPokemon) {
+    return {
+      title: 'Error',
+      description: 'ID de Pokémon no válido',
+    };
+  }
+  try {
+    const { id, name } = await getPokemon(idPokemon);
+    return {
+      title: `#${id} - ${name}`,
+      description: `Información del Pokémon ${name}`,
+    };
+  } catch (error) {
+    return {
+      title: 'Error',
+      description: 'No se pudo cargar la información del Pokémon',
+    };
+  }
 }
 
 export default async function PokemonPage({ params }: Props) {
