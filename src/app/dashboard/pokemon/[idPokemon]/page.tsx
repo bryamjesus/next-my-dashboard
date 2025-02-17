@@ -32,7 +32,7 @@ const getPokemon = async (idPokemon: string): Promise<Pokemon> => {
 // LINK SOLUCION: https://github.com/vercel/next.js/issues/74406
 export async function generateMetadata(
   props: Readonly<{
-    params: Promise<{ idPokemon: string }>;
+    params: Promise<Props['params']>;
   }>
 ): Promise<Metadata> {
   const { idPokemon } = await props.params;
