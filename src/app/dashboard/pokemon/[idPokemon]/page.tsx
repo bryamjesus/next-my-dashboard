@@ -4,6 +4,15 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
+// TODO: Solo se ejecutara en Build Time
+export async function generateStaticParams() {
+  const statis152Pokemons = Array.from(
+    { length: 152 },
+    (valor, index) => index + 1
+  );
+  return statis152Pokemons.map((id) => ({ idPokemon: id.toString() }));
+}
+
 // interface Props {
 //   params: { idPokemon: string };
 // }
@@ -19,9 +28,9 @@ const getPokemon = async (idPokemon: string): Promise<Pokemon> => {
       `https://pokeapi.co/api/v2/pokemon/${idPokemon}`,
       {
         cache: 'force-cache', // TODO: Cannot find name 'await'.
-        // next:{
-        //   revalidate: 60 * 60 * 30 * 6 // TODO: 6 meses
-        // }
+        next:{
+          revalidate: 86400  // TODO: Cada dia
+        }
       }
     ).then((response) => response.json());
     console.log(`Se cargó: ${pokemon.name}`);
