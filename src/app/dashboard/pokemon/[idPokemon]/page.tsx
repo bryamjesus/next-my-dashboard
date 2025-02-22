@@ -28,9 +28,9 @@ const getPokemon = async (idPokemon: string): Promise<Pokemon> => {
       `https://pokeapi.co/api/v2/pokemon/${idPokemon}`,
       {
         cache: 'force-cache', // TODO: Cannot find name 'await'.
-        next:{
-          revalidate: 86400  // TODO: Cada dia
-        }
+        next: {
+          revalidate: 86400, // TODO: Cada dia
+        },
       }
     ).then((response) => response.json());
     console.log(`Se cargó: ${pokemon.name}`);

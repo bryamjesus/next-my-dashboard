@@ -1,4 +1,4 @@
-import { SimpleWidget } from '@/components/SimpleWidget';
+import { SimpleWidget } from '@/components/dashboard/SimpleWidget';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

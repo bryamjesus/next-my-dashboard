@@ -1,4 +1,4 @@
-import { Sidebar } from '@/components/Sidebar';
+import { Sidebar } from '@/components/sidebar/Sidebar';
 import Link from 'next/link';
 
 // Es la pagina de not found -> global
