@@ -9,7 +9,7 @@ export async function GET(request: Request) {
   // console.log({ method: request.method, url: request.url });
   return Response.json({
     method: 'GET',
-    count: 10,
+    count: 100,
   });
 }
 
@@ -17,6 +17,6 @@ export async function POST(request: Request) {
   // console.log({ method: request.method, url: request.url });
   return Response.json({
     method: 'POST',
-    count: 10,
+    count: 100,
   });
 }
